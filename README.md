@@ -14,6 +14,63 @@ Things I would love to add
 Things I havent done yet
 - No Server
 
+## API
+
+### Grab all my TODOS
+```
+GET /api/todos
+```
+```
+Response 200
+Body
+  {
+    todos:[{
+      id: 123,
+      description: "I am a TODO",
+      completed: false
+      }]
+  }
+```
+### Create a new TODO
+```
+POST /api/todo
+Body
+  {
+    description: "I am a TODO",
+    completed: false
+  }
+```
+```
+Response 201
+Body
+  {
+    id: 123,
+    description: "I am a TODO",
+    completed: false
+  }
+```
+### Update a TODO
+```
+PUT /api/todo/:id
+Body
+  {
+    id: 123,
+    description: "I am a TODO, my ",
+    completed: true
+  }
+```
+```
+Response 200
+Body
+  {
+    id: 123,
+    description: "I am a TODO",
+    completed: false
+  }
+```
+
+
+# Original create-react-app documentation
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
