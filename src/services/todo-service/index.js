@@ -1,18 +1,11 @@
 import add from "./add";
 import load from "./load";
+import update from "./update";
 
 const TodoService = {
   add,
-  load: () => Promise.resolve([{
-    id: 1,
-    text: "Todo 1",
-    completed: false
-  },
-  {
-    id: 2,
-    text: "Todo 2",
-    completed: true
-  }])
+  update,
+  load
 };
 
 export default TodoService;

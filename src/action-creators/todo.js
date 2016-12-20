@@ -1,5 +1,4 @@
 import TodoActions from "../actions/todo";
-import TodoService from "../services/todo-service";
 
 export const addTodoAction = (todo) => ({
   type: TodoActions.ADD,
@@ -30,13 +29,25 @@ export const toggleTodoAction = (todoId) => {
   };
 };
 
-export const toggleTodo = (todoId) => (dispatch) => {
-  dispatch(toggleTodoAction(todoId));
+export const toggleTodo = (todo) => (dispatch, getstate, services) => {
+  const updatedTodo = Object.assign({}, todo, {completed: !todo.completed})
+  dispatch(loadingActionCreator(true));
+  services.todoService.update(todo)
+    .then((todo) => {
+      dispatch(loadingActionCreator(false));
+      dispatch(errorActionCreator(false));
+      dispatch(toggleTodoAction(updatedTodo));
+    })
+    .catch((error) => {
+      dispatch(loadingActionCreator(false));
+      dispatch(errorActionCreator(true));
+    });
+  dispatch(toggleTodoAction(todo.id));
 };
 
-export const addTodo = (text) => (dispatch) => {
+export const addTodo = (text) => (dispatch, getstate, services) => {
   dispatch(loadingActionCreator(true));
-  TodoService.add({text, completed: false})
+  services.todoService.add({text, completed: false})
     .then((todo) => {
       dispatch(loadingActionCreator(false));
       dispatch(errorActionCreator(false));
@@ -48,9 +59,9 @@ export const addTodo = (text) => (dispatch) => {
     });
 };
 
-export const loadTodos = () => (dispatch) => {
+export const loadTodos = () => (dispatch, getstate, services) => {
   dispatch(loadingActionCreator(true));
-  TodoService.load()
+  services.todoService.load()
     .then((todos) => {
       dispatch(loadingActionCreator(false));
       dispatch(errorActionCreator(false));

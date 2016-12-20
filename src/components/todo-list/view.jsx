@@ -6,7 +6,7 @@ const createTodo = (onTodoClick) => (todo) => (
   <Todo
     key={todo.id}
     {...todo}
-    onClick={() => onTodoClick(todo.id)}
+    onClick={() => onTodoClick(todo)}
   />
 );
 
