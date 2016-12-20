@@ -9,10 +9,10 @@ const createOptions = (body) => ({
   body: JSON.stringify(body)
 });
 
-const add = ({ text, completed }) => {
+const add = (baseUrl) => ({ text, completed }) => {
   const options = createOptions({ text, completed });
 
-  return fetch("/api/todos/add", options)
+  return fetch(`${baseUrl}/api/todos/add`, options)
     .then(handleJsonResponse);
 };
 

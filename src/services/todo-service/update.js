@@ -9,10 +9,10 @@ const createOptions = (body) => ({
   body: JSON.stringify(body)
 });
 
-const add = (todo) => {
+const add = (baseUrl) => (todo) => {
   const options = createOptions(todo);
 
-  return fetch(`/api/todos/${todo.id}`, options)
+  return fetch(`${baseUrl}/api/todos/${todo.id}`, options)
     .then(handleJsonResponse);
 };
 

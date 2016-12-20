@@ -1,23 +1,27 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import reducers from "../reducers";
-import TodoService from "../services/todo-service";
+import todoService from "../services/todo-service";
 
-
-const stubbedLoad = () => (Promise.resolve([{
-  id: "1",
-  text: "Todo 1",
-  completed: false
-},
-{
-  id: "2",
-  text: "Todo 2",
-  completed: true
-}])
-);
+const stubbedLoad = () => {
+  return Promise.resolve([{
+    id: "1",
+    text: "Todo 1",
+    completed: false
+  },
+  {
+    id: "2",
+    text: "Todo 2",
+    completed: true
+  }])
+};
 
 const services = {
-  todoService: Object.assign({}, TodoService, { load: stubbedLoad })
+  todoService: {
+    load: stubbedLoad,
+    update: () => Promise.resolve({}),
+    add: () => Promise.resolve({})
+  }
 };
 
 const store = createStore(

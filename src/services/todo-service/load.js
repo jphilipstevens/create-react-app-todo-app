@@ -7,9 +7,9 @@ const options = {
   method: "GET"
 };
 
-const load = () => {
+const load = (baseUrl) => () => {
   
-  return fetch("/api/todos/", options)
+  return fetch(`${baseUrl}/api/todos/`, options)
     .then(handleJsonResponse);
 };
 

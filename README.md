@@ -63,9 +63,7 @@ Body
 Response 200
 Body
   {
-    id: 123,
-    description: "I am a TODO",
-    completed: false
+    updated: true
   }
 ```
 
