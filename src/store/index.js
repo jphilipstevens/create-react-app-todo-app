@@ -5,12 +5,12 @@ import TodoService from "../services/todo-service";
 
 
 const stubbedLoad = () => (Promise.resolve([{
-  id: 1,
+  id: "1",
   text: "Todo 1",
   completed: false
 },
 {
-  id: 2,
+  id: "2",
   text: "Todo 2",
   completed: true
 }])
