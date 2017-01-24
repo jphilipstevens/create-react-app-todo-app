@@ -13,6 +13,8 @@ const update = (repository) => (req, res) => {
 const TodoRouter = {};
 
 TodoRouter.apply = (router, repository) => {
-    router.get('/', get(repository));
-    router.post('/', post(repository));
+    router.get('/todos', get(repository));
+    router.post('/todos', post(repository));
 };
+
+export default TodoRouter;
