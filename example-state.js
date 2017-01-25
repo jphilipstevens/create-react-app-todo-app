@@ -16,7 +16,7 @@ const defaultState = {
             isValid: true,
             text: {
                 value: "1231231"
-            }`
+            },
             onComplete: true
         },
         456: {

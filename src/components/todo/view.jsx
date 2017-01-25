@@ -9,11 +9,11 @@ const determineStyle = (completed) => (
     : {}
 );
 
-const TodoTitle = ({text, completed}) => <span style={determineStyle(completed)}> {text} </span>;
+const TodoTitle = ({description, completed}) => <span style={determineStyle(completed)}> {description} </span>;
 
-const Todo = ({onClick, completed, text}) => (
+const Todo = ({onClick, completed, description}) => (
     <AppBar
-      title={<TodoTitle text={text} completed={completed} />}
+      title={<TodoTitle description={description} completed={completed} />}
       onTitleTouchTap={onClick}
       iconElementLeft={<IconButton> <NavigationClose/> </IconButton>}
     />
@@ -22,7 +22,7 @@ const Todo = ({onClick, completed, text}) => (
 Todo.propTypes = {
   onClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired
 };
 
 export default Todo;

@@ -21,11 +21,12 @@ Repository.addTodo = ({completed = false, description = ""}) => {
     return todo;
 };
 
-Repository.update = (todo) => {
-    const point = database.indexOf(todo);
+Repository.update = (id, newTodo) => {
+    const point = database.findIndex(todo => todo.id === id);
+    console.log(point);
 
     if(point !== -1 ){
-        database[point] = todo;
+        database[point] = newTodo;
         return true;
     } else {
         return false;

@@ -11,7 +11,6 @@ const todosStrategy = {
 };
 
 const loading = (state = false, action) => {
-    console.log(`action = ${JSON.stringify(action)}`);
   return (todosStrategy[action.type] || todosStrategy.default)(state, action);
 };
 

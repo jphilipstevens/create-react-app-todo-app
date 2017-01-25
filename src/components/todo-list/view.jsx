@@ -44,7 +44,7 @@ TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired
+    description: PropTypes.string.isRequired
   }).isRequired).isRequired,
   isLoading: PropTypes.bool.isRequired,
   onTodoClick: PropTypes.func.isRequired,
