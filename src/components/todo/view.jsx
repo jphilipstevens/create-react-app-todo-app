@@ -9,7 +9,9 @@ const determineStyle = (completed) => (
     : {}
 );
 
-const TodoTitle = ({description, completed}) => <span style={determineStyle(completed)}> {description} </span>;
+const TodoTitle = ({description, completed}) => (
+  <span className="TodoTitle" style={determineStyle(completed)}> {description} </span>
+);
 
 const Todo = ({onClick, completed, description}) => (
     <AppBar
