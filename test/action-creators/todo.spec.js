@@ -2,7 +2,7 @@ import { expect } from "chai";
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-import { toggleTodo, loadTodos } from "../../src/action-creators/todo";
+import { toggleTodo, loadTodos, addTodo } from "../../src/action-creators/todo";
 import TodoActions from "../../src/actions/todo";
 
 const initialTodos = [{
@@ -20,7 +20,7 @@ const sucessfulServices = {
     todoService: {
         load: () => Promise.resolve(initialTodos),
         update: () => Promise.resolve({}),
-        add: (description) => Promise.resolve({id: "1", completed: false, description})
+        add: ({text, completed}) => Promise.resolve({id: "1", completed, description: text})
     }
 };
 
@@ -146,11 +146,11 @@ describe("todo action creators", () => {
                 { type: TodoActions.ERROR, meta: false },
                 {
                     type: TodoActions.ADD,
-                    payload: initialTodos
+                    payload: { id: "1", completed: false, description: "foo" }
                 }
             ];
 
-            return store.dispatch(loadTodos())
+            return store.dispatch(addTodo("foo"))
                 .then(() => {
                     const actions = store.getActions();
                     expect(actions).to.deep.equal(expectedActions);
@@ -163,13 +163,14 @@ describe("todo action creators", () => {
                 todos: [],
                 isLoading: false
             });
+            
             const expectedActions = [
                 { type: TodoActions.LOADING, meta: true },
                 { type: TodoActions.LOADING, meta: false },
                 { type: TodoActions.ERROR, meta: true }
             ];
 
-            return store.dispatch(loadTodos())
+            return store.dispatch(addTodo("foo"))
                 .then(() => {
                     const actions = store.getActions();
                     expect(actions).to.deep.equal(expectedActions);
