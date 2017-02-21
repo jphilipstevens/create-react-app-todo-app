@@ -2,6 +2,7 @@
 import "whatwg-fetch";
 
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Provider } from "react-redux";
 import injectTapEventPlugin from "react-tap-event-plugin";
@@ -13,6 +14,11 @@ injectTapEventPlugin();
 import Todos from "../components/todo-list";
 import store from "../store";
 
+const NoMatch = ({ location }) => (
+  <div>
+    <h3>No match for <code>{location.pathname}</code></h3>
+  </div>
+)
 
 class App extends React.Component {
 
@@ -20,12 +26,16 @@ class App extends React.Component {
     return (
       <MuiThemeProvider>
         <Provider store={store}>
-          <Todos />
+          <Router>
+            <Switch>
+              <Route path="/" exact render={() => (<Todos />)} />
+              <Route component={NoMatch} />
+            </Switch>
+          </Router>
         </Provider>
       </MuiThemeProvider>
     );
   }
 }
-
 
 export default App;
