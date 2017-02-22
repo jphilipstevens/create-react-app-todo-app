@@ -20,11 +20,11 @@ produces:
 paths:
   /api/todos:
     # binds a127 app logic to a route
-    x-swagger-router-controller: todo-router
+    x-swagger-router-controller: todos/todo-router
     get:
       description: returns all Todos
       # used as the method name of the controller
-      operationId: todos
+      operationId: get
       responses:
         "200":
           description: Success
@@ -36,10 +36,38 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+    post:
+      summary: Create a new todo
+      operationId: post
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: "#/definitions/TodoResponse"
+      parameters:
+        - name: todo
+          in: body
+          description: Todo to add to the system
+          required: true
+          schema:
+            $ref: '#/definitions/NewTodo'
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
+  NewTodo:
+    required:
+      - completed
+      - description
+    properties:
+      completed:
+        type: boolean
+      description:
+        type: string
   TodoResponse:
     required:
       - id

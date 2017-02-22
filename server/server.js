@@ -1,10 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import TodoRouter from './todo-router';
-import Repository from "./repository";
 import path from "path";
 import morgan from "morgan";
 import SwaggerExpress from "swagger-express-mw";
+
+import createTodos from "./todos";
+
 const app = express();
 
 const config = {
@@ -23,7 +24,7 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
     app.use(bodyParser.json());
 
     const router = express.Router();
-    TodoRouter.apply(router, Repository);
+    createTodos()(router);
     app.use('/api', router);
     // Serve static assets
     app.use(express.static(path.resolve(__dirname, '..', 'build')));
