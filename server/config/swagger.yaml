@@ -24,7 +24,7 @@ paths:
     get:
       description: returns all Todos
       # used as the method name of the controller
-      operationId: get
+      operationId: getAlltodos
       responses:
         "200":
           description: Success
@@ -38,7 +38,7 @@ paths:
             $ref: "#/definitions/ErrorResponse"
     post:
       summary: Create a new todo
-      operationId: post
+      operationId: createTodo
       consumes:
         - application/json
       produces:
@@ -49,7 +49,7 @@ paths:
           schema:
             $ref: "#/definitions/TodoResponse"
       parameters:
-        - name: todo
+        - name: "todo"
           in: body
           description: Todo to add to the system
           required: true
@@ -68,6 +68,7 @@ definitions:
         type: boolean
       description:
         type: string
+  
   TodoResponse:
     required:
       - id
@@ -80,6 +81,7 @@ definitions:
         type: boolean
       description:
         type: string
+  
   ErrorResponse:
     required:
       - message
