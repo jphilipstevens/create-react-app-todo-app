@@ -7,9 +7,11 @@ import SwaggerExpress from "swagger-express-mw";
 
 const app = express();
 
+const appRoot = path.resolve(__dirname);
 const config = {
-    appRoot: __dirname,
-    swaggerFile: `${__dirname}/config/swagger.yaml`
+    appRoot: appRoot,
+    configDir: path.resolve(path.join(appRoot, "..", "config")),
+    swaggerFile: path.resolve(path.join(appRoot, "..", "config", "swagger.yaml"))
 };
 
 SwaggerExpress.create(config, (err, swaggerExpress) => {
