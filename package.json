@@ -54,9 +54,10 @@
     "start:server": "node server/index.js",
     "build": "react-scripts build",
     "deploy": "npm run build&&gh-pages -d build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "test:swagger": "swagger project test",
+    "test:client": "react-scripts test --env=jsdom",
+    "test:server": "jest ./server/test",
+    "test:swagger": "swagger validate ./server/config/swagger.yaml",
     "lint:server": "eslint ./server --fix"
   },
   "main": "index.js",
