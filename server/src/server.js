@@ -8,6 +8,7 @@ import SwaggerExpress from "swagger-express-mw";
 const app = express();
 
 const appRoot = path.resolve(__dirname);
+console.log(appRoot);
 const config = {
     appRoot: appRoot,
     configDir: path.resolve(path.join(appRoot, "..", "config")),
@@ -15,9 +16,11 @@ const config = {
 };
 
 SwaggerExpress.create(config, (err, swaggerExpress) => {
+
     if (err) {
         throw err;
     }
+
     app.use(
         morgan(":remote-addr - :remote-user [:date[clf]] ':method :url HTTP/:http-version' :status :res[content-length] :response-time ms")
     );
@@ -29,6 +32,8 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
 
     app.use(SwaggerUi(swaggerExpress.runner.swagger));
     swaggerExpress.register(app);
+
+    console.log(app._router.stack);
 
     const port = process.env.PORT || 8080;
     app.listen(port);

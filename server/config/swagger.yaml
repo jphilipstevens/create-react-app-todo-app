@@ -20,7 +20,7 @@ produces:
 paths:
   /api/todos:
     # binds a127 app logic to a route
-    x-swagger-router-controller: todos/todo-router
+    x-swagger-router-controller: todos/routers/todo-router
     get:
       description: returns all Todos
       # used as the method name of the controller
