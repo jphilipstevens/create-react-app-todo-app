@@ -1,5 +1,5 @@
 import * as HttpStatusCodes from "http-status-codes";
-import repository from "../repository";
+import repository from "../../repository";
 
 export const getAlltodos = (req, res) => {
     res.json(repository.getAllTodos());

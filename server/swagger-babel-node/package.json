@@ -1,0 +1,33 @@
+{
+  "name": "swagger-babel-node",
+  "version": "1.0.0",
+  "description": "This is an API server build using babel node swagger",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^19.0.2",
+    "rimraf": "^2.6.1",
+    "swagger": "^0.7.5"
+  },
+  "dependencies": {
+    "args-parser": "^1.0.2",
+    "babel-preset-env": "^1.2.1",
+    "babel-register": "^6.23.0",
+    "babel-runtime": "^6.23.0",
+    "body-parser": "^1.17.1",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "express": "^4.15.2",
+    "http-status-codes": "^1.1.6",
+    "morgan": "^1.8.1",
+    "node-uuid": "^1.4.7",
+    "swagger-express-mw": "^0.7.0"
+  },
+  "scripts": {
+    "start": "node ./src/index.js --clientPath=../../build",
+    "test": "jest ./server/test",
+    "test:swagger": "swagger validate ./server/config/swagger.yaml",
+    "lint": "eslint ./server/src --fix"
+  }
+}

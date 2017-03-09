@@ -4,15 +4,17 @@ import bodyParser from "body-parser";
 import path from "path";
 import morgan from "morgan";
 import SwaggerExpress from "swagger-express-mw";
+import ArgParser from "args-parser";
 
 const app = express();
 
-const appRoot = path.resolve(__dirname);
-console.log(appRoot);
+const appRoot = path.resolve(path.join(__dirname, ".."));
+
 const config = {
     appRoot: appRoot,
-    configDir: path.resolve(path.join(appRoot, "..", "config")),
-    swaggerFile: path.resolve(path.join(appRoot, "..", "config", "swagger.yaml"))
+    configDir: path.resolve(path.join(appRoot, "config")),
+    swaggerFile: path.resolve(path.join(appRoot, "config", "swagger.yaml")),
+    clientPath: ArgParser(process.argv).clientPath
 };
 
 SwaggerExpress.create(config, (err, swaggerExpress) => {
@@ -28,12 +30,10 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
     app.use(bodyParser.json());
 
     // Serve static assets
-    app.use(express.static(path.resolve(__dirname, "..", "build")));
+    app.use(express.static(path.resolve(config.clientPath)));
 
     app.use(SwaggerUi(swaggerExpress.runner.swagger));
     swaggerExpress.register(app);
-
-    console.log(app._router.stack);
 
     const port = process.env.PORT || 8080;
     app.listen(port);

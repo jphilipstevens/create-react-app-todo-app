@@ -2,8 +2,6 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: My TODO APP
-# during dev, should point to your local machine
-host: localhost:10010
 # basePath prefixes all resource paths 
 basePath: /
 # 
@@ -20,7 +18,7 @@ produces:
 paths:
   /api/todos:
     # binds a127 app logic to a route
-    x-swagger-router-controller: todos/routers/todo-router
+    x-swagger-router-controller: src/todos/routers/sub1/todo-router
     get:
       description: returns all Todos
       # used as the method name of the controller
