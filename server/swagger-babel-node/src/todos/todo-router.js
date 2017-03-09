@@ -1,8 +1,10 @@
 import * as HttpStatusCodes from "http-status-codes";
-import repository from "../../repository";
+import ModuleInjector from "../module-injector";
+
+const repository = ModuleInjector.resolve("todo-reposity");
 
 export const getAlltodos = (req, res) => {
-    res.json(repository.getAllTodos());
+    res.status(HttpStatusCodes.OK).json(repository.getAllTodos());
 };
 
 export const createTodo = (req, res) => {
@@ -12,5 +14,5 @@ export const createTodo = (req, res) => {
 };
 
 export const updateTodo = (req, res) => {
-    res.json({ update: repository.update(req.params.id, req.body) });
+    res.status(HttpStatusCodes.OK).json({ update: repository.update(req.params.id, req.body) });
 };

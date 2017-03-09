@@ -28,6 +28,6 @@
     "start": "node ./src/index.js --clientPath=../../build",
     "test": "jest ./server/test",
     "test:swagger": "swagger validate ./server/config/swagger.yaml",
-    "lint": "eslint ./server/src --fix"
+    "lint": "eslint ./server/src/**/*.js --fix"
   }
 }

@@ -1,0 +1,160 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "0.0.1",
+		"title": "My TODO APP"
+	},
+	"basePath": "/api",
+	"schemes": [
+		"http",
+		"https"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/todos": {
+			"x-swagger-router-controller": "src/todos/todo-router",
+			"get": {
+				"description": "returns all Todos",
+				"operationId": "getAlltodos",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/TodoResponse"
+						}
+					},
+					"default": {
+						"description": "Error",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			},
+			"post": {
+				"summary": "Create a new todo",
+				"operationId": "createTodo",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/TodoResponse"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "todo",
+						"in": "body",
+						"description": "Todo to add to the system",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/NewTodo"
+						}
+					}
+				]
+			}
+		},
+		"/todos/{id}": {
+			"x-swagger-router-controller": "src/todos/todo-router",
+			"put": {
+				"summary": "Update a TODO",
+				"operationId": "updateTodo",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Updated The todo",
+						"schema": {
+							"$ref": "#/definitions/TodoResponse"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "The TODO Id we are updating",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "todo",
+						"in": "body",
+						"description": "Todo to add to the system",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/TodoResponse"
+						}
+					}
+				]
+			}
+		},
+		"/swagger": {
+			"x-swagger-pipe": "swagger_raw"
+		}
+	},
+	"definitions": {
+		"NewTodo": {
+			"required": [
+				"completed",
+				"description"
+			],
+			"properties": {
+				"completed": {
+					"type": "boolean"
+				},
+				"description": {
+					"type": "string"
+				}
+			}
+		},
+		"TodoResponse": {
+			"required": [
+				"id",
+				"completed",
+				"description"
+			],
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"completed": {
+					"type": "boolean"
+				},
+				"description": {
+					"type": "string"
+				}
+			}
+		},
+		"ErrorResponse": {
+			"required": [
+				"message",
+				"code"
+			],
+			"properties": {
+				"message": {
+					"type": "string"
+				},
+				"code": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

@@ -6,6 +6,8 @@ import morgan from "morgan";
 import SwaggerExpress from "swagger-express-mw";
 import ArgParser from "args-parser";
 
+require("./module-registration");
+
 const app = express();
 
 const appRoot = path.resolve(path.join(__dirname, ".."));
@@ -13,7 +15,7 @@ const appRoot = path.resolve(path.join(__dirname, ".."));
 const config = {
     appRoot: appRoot,
     configDir: path.resolve(path.join(appRoot, "config")),
-    swaggerFile: path.resolve(path.join(appRoot, "config", "swagger.yaml")),
+    swaggerFile: path.resolve(path.join(appRoot, "config", "swagger.json")),
     clientPath: ArgParser(process.argv).clientPath
 };
 
