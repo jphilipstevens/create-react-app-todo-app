@@ -25,7 +25,7 @@
     "swagger-express-mw": "^0.7.0"
   },
   "scripts": {
-    "start": "node ./src/index.js --clientPath=../../build",
+    "start": "node ./src/index.js --clientPath=../../client/build",
     "test": "jest ./server/test",
     "test:swagger": "swagger validate ./server/config/swagger.yaml",
     "lint": "eslint ./server/src/**/*.js --fix"
