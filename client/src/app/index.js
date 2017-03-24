@@ -12,6 +12,7 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
 import Todos from "../components/todo-list";
+import Todo from "../components/todo";
 import store from "../store";
 
 const NoMatch = ({ location }) => (
@@ -19,6 +20,14 @@ const NoMatch = ({ location }) => (
     <h3>No match for <code>{location.pathname}</code></h3>
   </div>
 )
+
+const createTodo = (onTodoClick) => (todo) => (
+  <Todo
+    key={todo.id}
+    {...todo}
+    onClick={() => onTodoClick(todo)}
+  />
+);
 
 class App extends React.Component {
 
@@ -28,7 +37,7 @@ class App extends React.Component {
         <Provider store={store}>
           <Router>
             <Switch>
-              <Route path="/" exact render={() => (<Todos />)} />
+              <Route path="/" exact render={() => (<Todos createTodo={createTodo} />)} />
               <Route component={NoMatch} />
             </Switch>
           </Router>

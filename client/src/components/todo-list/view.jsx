@@ -2,14 +2,6 @@ import React, { PropTypes } from "react";
 import Todo from "../todo";
 import CircularProgress from 'material-ui/CircularProgress';
 
-const createTodo = (onTodoClick) => (todo) => (
-  <Todo
-    key={todo.id}
-    {...todo}
-    onClick={() => onTodoClick(todo)}
-  />
-);
-
 class TodoList extends React.Component {
 
   componentWillMount(){
@@ -27,7 +19,7 @@ class TodoList extends React.Component {
         return 0;
     });
     const isLoading = this.props.isLoading;
-
+    const createTodo = this.props.createTodo;
     return (
       <section>
         <h1>My Todos!</h1>
@@ -48,7 +40,8 @@ TodoList.propTypes = {
   }).isRequired).isRequired,
   isLoading: PropTypes.bool.isRequired,
   onTodoClick: PropTypes.func.isRequired,
-  load: PropTypes.func.isRequired
+  load: PropTypes.func.isRequired,
+  createTodo: PropTypes.func.isRequired
 };
 
 export default TodoList;

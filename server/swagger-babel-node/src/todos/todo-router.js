@@ -1,6 +1,5 @@
 import * as HttpStatusCodes from "http-status-codes";
 import ModuleInjector from "../module-injector";
-
 const repository = ModuleInjector.resolve("todo-reposity");
 
 export const getAlltodos = (req, res) => {
