@@ -4,9 +4,11 @@ import java.util.UUID
 
 import org.springframework.stereotype.Repository
 
+import scala.collection.mutable
+
 @Repository
 class TodoMockRepo extends TodoRespository {
-  val database: List[Todo] = List(
+  val database = mutable.MutableList(
     Todo(
       id = Some(UUID.randomUUID().toString),
       completed = true,
@@ -14,5 +16,15 @@ class TodoMockRepo extends TodoRespository {
     )
   )
 
-  override def getTodos(): List[Todo] = database
+  override def getTodos(): List[Todo] = database.toList
+
+  override def addTodo(completed: Boolean, description: String): Todo = {
+    val todo = Todo(
+      id = Some(UUID.randomUUID().toString),
+      completed,
+      description
+    )
+    database += todo
+    todo
+  }
 }
