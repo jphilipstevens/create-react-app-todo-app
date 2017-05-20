@@ -1,5 +1,4 @@
 import React, { PropTypes } from "react";
-import Todo from "../todo";
 import CircularProgress from 'material-ui/CircularProgress';
 
 class TodoList extends React.Component {

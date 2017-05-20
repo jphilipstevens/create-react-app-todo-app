@@ -1,25 +1,41 @@
-import React, {PropTypes} from "react";
-import AppBar from "material-ui/AppBar";
-import IconButton from "material-ui/IconButton";
-import NavigationClose from "material-ui/svg-icons/navigation/close";
+import React, { PropTypes } from "react";
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
-const determineStyle = (completed) => (
-  completed
-    ? { textDecoration: "line-through"}
-    : {}
-);
+// const determineStyle = (completed) => (
+//   completed
+//     ? { textDecoration: "line-through" }
+//     : {}
+// );
 
-const TodoTitle = ({description, completed}) => (
-  <span className="TodoTitle" style={determineStyle(completed)}> {description} </span>
-);
+class Todo extends React.Component {
 
-const Todo = ({onClick, completed, description}) => (
-    <AppBar
-      title={<TodoTitle description={description} completed={completed} />}
-      onTitleTouchTap={onClick}
-      iconElementLeft={<IconButton> <NavigationClose/> </IconButton>}
-    />
-);
+  constructor(){
+    super();
+    this.state = {
+      expanded: true
+    };
+  }
+
+  render() {
+  
+    const { onClick, completed, description } = this.props;
+
+    return (
+      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
+        <CardHeader
+          title={description}
+          actAsExpander={true}
+          showExpandableButton={true}
+        />
+        <CardActions>
+          <FlatButton label="Complete" />
+        </CardActions>
+
+      </Card>
+    );
+  }
+}
 
 Todo.propTypes = {
   onClick: PropTypes.func.isRequired,

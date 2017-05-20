@@ -10,7 +10,8 @@ const options = {
 const load = (baseUrl) => () => {
   
   return fetch(`${baseUrl}/api/todos/`, options)
-    .then(handleJsonResponse);
+    .then(handleJsonResponse)
+    .then(response => response.todos);
 };
 
 export default load;
