@@ -1,0 +1,11 @@
+{
+    "extends": "tslint:recommended",
+    "rules": {
+        "max-classes-per-file": [],
+        "max-line-length": [],
+        "interface-name": [],
+        "trailing-comma": [],
+        "object-literal-sort-keys": false,
+        "member-ordering": []
+    }
+}

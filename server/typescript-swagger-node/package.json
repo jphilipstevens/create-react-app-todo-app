@@ -1,0 +1,32 @@
+{
+  "name": "create-react-app-swagger-server",
+  "version": "1.0.0",
+  "main": "api/main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./api/main.js --clientPath=../../client/build",
+    "compile": "tsc",
+    "build": "npm run test && npm run compile",
+    "test": "jest ./test",
+    "test:swagger": "swagger validate ./config/swagger.yaml",
+    "lint": "tslint -c ./tslint.json 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "args-parser": "^1.1.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "http-status-codes": "^1.1.6",
+    "morgan": "^1.8.2",
+    "node-uuid": "^1.4.8",
+    "swagger-express-mw": "^0.7.0",
+    "swagger-tools": "^0.10.1"
+  },
+  "devDependencies": {
+    "@types/core-js": "^0.9.41",
+    "@types/express": "^4.0.36",
+    "@types/node": "^8.0.2",
+    "@types/swagger-express-mw": "^0.7.0",
+    "ts-lint": "^4.5.1",
+    "typescript": "^2.4.1"
+  }
+}

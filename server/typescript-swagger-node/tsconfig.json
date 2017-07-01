@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "target" : "es6",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "strictNullChecks": true,
+        "outDir": "api",
+        "sourceMap": true,
+        "allowJs": true,
+        "types": [
+            "node"
+        ],
+        "typeRoots": [
+            "types",
+            "node_modules/@types"
+        ],
+        "baseUrl": "./",
+        "paths": {
+            "*": [
+                "types/*",
+                "*"
+            ]
+        }
+    },
+    "compileOnSave": true,
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
